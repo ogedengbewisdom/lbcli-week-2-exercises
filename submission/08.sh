@@ -14,5 +14,4 @@ recipient="2MvLcssW49n9atmksjwg2ZCMsEMsoj3pzUP"
 raw_tx_hex=$(bitcoin-cli -regtest -named createrawtransaction inputs='''[{"txid":"'$utxo_txid'","vout":'$utxo_vout1',"sequence": 1}, {"txid":"'$utxo_txid'","vout": '$utxo_vout2',"sequence": 1} ]''' outputs='''{ "'$recipient'": 0.2 }''' )
 
 signed_raw_tx=$(bitcoin-cli -regtest -named signrawtransactionwithwallet hexstring=$raw_tx_hex | jq -r '.hex')
-
 echo $signed_raw_tx
